@@ -22,22 +22,17 @@ def main():
     print(" Student: YASIR EQBAL | Student ID: E25B070671")
     print("=" * 60)
     
-    # Step 1: Generate Narration
-    print("\n[STEP 1/4] Generating Voiceover Narration Audio...")
-    subprocess.run([sys.executable, os.path.join(SCRIPTS_DIR, "generate_narration.py")], check=True)
-    subprocess.run([sys.executable, os.path.join(SCRIPTS_DIR, "combine_audio.py")], check=True)
-    
-    # Step 2: Generate Storyboard PDF
-    print("\n[STEP 2/4] Generating Storyboard PDF Document...")
+    # Step 1: Generate Storyboard PDF
+    print("\n[STEP 1/3] Generating Storyboard PDF Document...")
     subprocess.run([sys.executable, os.path.join(DOCS_DIR, "generate_storyboard_pdf.py")], check=True)
     
-    # Step 3: Render and Assemble Final Video
-    print("\n[STEP 3/4] Rendering 6 Manim Scenes (1080p 30fps) and Assembling MP4...")
-    subprocess.run([sys.executable, os.path.join(SCRIPTS_DIR, "render_video.py")], check=True)
+    # Step 2: Render and Assemble Final Video
+    print("\n[STEP 2/3] Rendering Manim Scenes (1080p 30fps) and Assembling MP4...")
+    subprocess.run([sys.executable, os.path.join(SCRIPTS_DIR, "render_video_v2.py")], check=True)
     
-    # Step 4: Quality Assurance and Validation
-    print("\n[STEP 4/4] Validating Video Specifications & Extracting Snapshots...")
-    subprocess.run([sys.executable, os.path.join(SCRIPTS_DIR, "validate_video.py")], check=True)
+    # Step 3: Quality Assurance and Validation
+    print("\n[STEP 3/3] Validating Video Specifications & Extracting Snapshots...")
+    subprocess.run([sys.executable, os.path.join(SCRIPTS_DIR, "validate_video_v2.py")], check=True)
     
     print("\n" + "=" * 60)
     print("🎉 FULL PRODUCTION PIPELINE COMPLETED SUCCESSFULLY!")

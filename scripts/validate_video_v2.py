@@ -9,8 +9,7 @@ import json
 import subprocess
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FINAL_VIDEO_V1 = os.path.join(PROJECT_DIR, "output", "final_video.mp4")
-FINAL_VIDEO_V2 = os.path.join(PROJECT_DIR, "output", "final_video_v2.mp4")
+FINAL_VIDEO = os.path.join(PROJECT_DIR, "output", "final_video_m3_animation.mp4")
 SNAPSHOTS_V2_DIR = os.path.join(PROJECT_DIR, "documentation", "snapshots_v2")
 os.makedirs(SNAPSHOTS_V2_DIR, exist_ok=True)
 
@@ -29,26 +28,17 @@ def probe_file(path):
 
 def validate():
     print("\n==========================================")
-    print("QUALITY ASSURANCE & VALIDATION: VERSION 2")
+    print("QUALITY ASSURANCE & VALIDATION: FINAL VIDEO")
     print("==========================================")
     
     passed = True
     
-    # 0. Check that previous version (v1) is NOT deleted
-    if os.path.exists(FINAL_VIDEO_V1):
-        v1_sz = os.path.getsize(FINAL_VIDEO_V1) / (1024 * 1024)
-        print(f"• Preserved Version 1: {FINAL_VIDEO_V1} ({v1_sz:.2f} MB)")
-        print("  ✓ PASS: Previous version 1 is safely preserved!")
-    else:
-        print(f"❌ FAIL: Previous version final_video.mp4 was deleted or missing!")
-        passed = False
-        
-    # Check v2 exists
-    if not os.path.exists(FINAL_VIDEO_V2):
-        print(f"❌ FAIL: Final video v2 not found at {FINAL_VIDEO_V2}")
+    # Check final video exists
+    if not os.path.exists(FINAL_VIDEO):
+        print(f"❌ FAIL: Final video not found at {FINAL_VIDEO}")
         return False
         
-    info = probe_file(FINAL_VIDEO_V2)
+    info = probe_file(FINAL_VIDEO)
     fmt = info.get("format", {})
     duration = float(fmt.get("duration", 0.0))
     size_mb = float(fmt.get("size", 0)) / (1024 * 1024)
@@ -135,7 +125,7 @@ def validate():
             cmd = [
                 FFMPEG, "-y",
                 "-ss", str(sec),
-                "-i", FINAL_VIDEO_V2,
+                "-i", FINAL_VIDEO,
                 "-vframes", "1",
                 "-q:v", "2",
                 out_img

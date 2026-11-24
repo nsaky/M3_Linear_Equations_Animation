@@ -121,7 +121,7 @@ def render_scene(num, script_file, class_name):
 
 def concatenate_scenes(scene_files):
     print(f"\n==========================================")
-    print(f"Concatenating all {len(scene_files)} scenes into final_video_v2.mp4...")
+    print(f"Concatenating all {len(scene_files)} scenes into final_video_m3_animation.mp4...")
     print(f"==========================================")
     
     concat_list = os.path.join(INTERMEDIATE_DIR, "concat_list_v2.txt")
@@ -129,7 +129,7 @@ def concatenate_scenes(scene_files):
         for p in scene_files:
             f.write(f"file '{os.path.abspath(p)}'\n")
             
-    final_mp4 = os.path.join(OUTPUT_DIR, "final_video_v2.mp4")
+    final_mp4 = os.path.join(OUTPUT_DIR, "final_video_m3_animation.mp4")
     
     cmd = [
         FFMPEG, "-y",
