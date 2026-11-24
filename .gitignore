@@ -1,0 +1,7 @@
+output/manim_media_v2/
+output/intermediate_scenes_v2/
+output/intermediate_scenes/
+output/media/
+**/__pycache__/
+*.pyc
+.DS_Store
