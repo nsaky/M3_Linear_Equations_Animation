@@ -1,7 +1,15 @@
-**/manim_media_v2/
-**/intermediate_scenes_v2/
-**/intermediate_scenes/
-**/media/
-**/__pycache__/
-*.pyc
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary Manim media render caches
+media/
+output/manim_media/
+output/manim_media_v2/
+output/intermediate_scenes/
+output/intermediate_scenes_v2/
+
+# OS metadata
 .DS_Store
+Thumbs.db
